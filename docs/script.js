@@ -396,3 +396,18 @@ function playCaioPreview() {
   audio.currentTime = 0;
   audio.play();
 }
+
+function playCaioPreview() {
+  console.log("🎧 playCaioPreview called");
+  const audio = document.getElementById("caioPreviewAudio");
+
+  if (!audio) {
+    console.error("CAIO preview audio element not found");
+    return;
+  }
+
+  audio.currentTime = 0;
+  audio.play().catch(err => {
+    console.error("Audio play failed:", err);
+  });
+}

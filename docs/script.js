@@ -411,3 +411,20 @@ function playCaioPreview() {
     console.error("Audio play failed:", err);
   });
 }
+
+function playCaioPreview() {
+  console.log("🎧 CAIO preview triggered");
+
+  const audio = document.getElementById("caioPreviewAudio");
+
+  if (!audio) {
+    console.error("❌ caioPreviewAudio element not found");
+    return;
+  }
+
+  audio.currentTime = 0;
+
+  audio.play()
+    .then(() => console.log("✅ Playing CAIO voice preview"))
+    .catch(err => console.error("❌ Audio failed:", err));
+}

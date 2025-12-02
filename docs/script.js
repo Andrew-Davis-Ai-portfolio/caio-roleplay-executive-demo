@@ -384,3 +384,15 @@ resetBtn.addEventListener("click", () => {
 // Initial state
 userInput.disabled = true;
 sendBtn.disabled = true;
+
+function playCaioPreview() {
+  const audio = document.getElementById("caioPreviewAudio");
+
+  if (!audio) {
+    console.error("CAIO preview audio element not found");
+    return;
+  }
+
+  audio.currentTime = 0;
+  audio.play();
+}

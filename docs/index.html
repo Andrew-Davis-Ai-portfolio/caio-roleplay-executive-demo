@@ -124,5 +124,20 @@
   
 <script src="caio-voice.js"></script>
   <script src="script.js"></script>
+
+  <!-- CAIO VOICE TEST BLOCK -->
+<section style="margin: 2rem 0; padding: 1rem; border: 1px solid #333; border-radius: 8px;">
+  <h2>CAIO Voice Test</h2>
+  <p>Tap the button below to test the CAIO preview voice.</p>
+
+  <button onclick="testCaioVoice()" class="fd-btn fd-btn-secondary">
+    🔊 Test CAIO Voice
+  </button>
+
+  <!-- MP3 preview (hidden, controlled by JS) -->
+  <audio id="caioPreviewAudio" preload="auto">
+    <source src="./assets/caio-voice-preview.mp3" type="audio/mpeg">
+  </audio>
+</section>
 </body>
 </html>

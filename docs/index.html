@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FLAME LAW — Where Ethics Meets Execution</title>
+<style>
+  :root{
+    --bg:#0b0e13;
+    --ember:#ffb76b;
+    --gold:#d4af37;
+    --aqua:#39c6ff;
+    --glow: drop-shadow(0 0 .45rem rgba(255,183,107,.9))
+            drop-shadow(0 0 .9rem rgba(212,175,55,.5));
+  }
+  /* Floating glyph field behind everything */
+#field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Ensure main content stays on top */
+.wrap, .hero {
+  position: relative;
+  z-index: 2;
+}
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:radial-gradient(1200px 600px at 50% 10%, #121722 0%, #0b0e13 60%, #070a0f 100%); color:#e9edf6; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;}
+  .wrap{position:relative; min-height:100%; overflow:hidden;}
+  /* Center title */
+  .hero{
+    position:relative; z-index:2;
+    max-width:920px; margin:12vh auto 0; padding:0 20px; text-align:center;
+  }
+  .kicker{letter-spacing:.25em; font-size:.8rem; opacity:.8}
+  h1{
+    margin:.35rem 0 1rem;
+    font-weight:800; line-height:1.06; letter-spacing:.015em;
+    font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+    background: linear-gradient(180deg, var(--ember), var(--gold) 60%, #fff 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter: var(--glow);
+  }
+  .sub{opacity:.9; font-size:clamp(1rem,2.7vw,1.25rem)}
+  /* Floating glyph field */
+  .field{
+    position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:1;
+  }
+  .glyph{
+    position:absolute; top:110%; left:var(--x);
+    font-weight:700; opacity:.0;
+    font-size:clamp(18px, 3.2vw, 28px);
+    color:#b7e7ff;
+    text-shadow: 0 0 8px rgba(57,198,255,.8), 0 0 18px rgba(57,198,255,.5);
+    transform:translateY(0) scale(1) rotate(var(--r));
+    animation: rise var(--dur) linear var(--delay) infinite;
+    will-change: transform, opacity;
+  }
+  @keyframes rise{
+    0%   { transform: translateY(0) scale(1) rotate(var(--r)); opacity:0; }
+    8%   { opacity:.85; }
+    60%  { opacity:.9; }
+    100% { transform: translateY(-130vh) scale(1.08) rotate(calc(var(--r) * -1)); opacity:0; }
+  }
+  /* CTA */
+  .cta{
+    margin:2.2rem auto 12vh; display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap;
+  }
+  .btn{
+    appearance:none; border:1px solid rgba(212,175,55,.5); background:rgba(255,255,255,.03);
+    color:#ffe7b8; padding:.8rem 1.1rem; border-radius:10px; font-weight:700; letter-spacing:.02em;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 0 0 rgba(0,0,0,0); transition: transform .12s ease, box-shadow .12s ease, background .2s ease;
+  }
+  .btn:hover{ transform:translateY(-1px); background:rgba(255,191,102,.07); box-shadow:0 8px 24px rgba(212,175,55,.15)}
+  .note{font-size:.85rem; opacity:.7; margin-top:.6rem}
+  /* Safe area on mobile notch */
+  @supports(padding:max(0px)) {
+    .hero{padding-left:max(20px, env(safe-area-inset-left)); padding-right:max(20px, env(safe-area-inset-right));}
+  }
+  /* ------ Floating glyphs (home only) ------ */
+.glyphs{
+  position: fixed; inset: 0; overflow: hidden;
+  pointer-events: none; z-index: 0;
+}
+.glyphs .g{
+  position: absolute;
+  font: 700 14px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--accent, #5BE7FF);
+  opacity: .85;
+  filter: drop-shadow(0 0 8px rgba(91,231,255,.35));
+  will-change: transform, opacity;
+}
+@keyframes driftUp {
+  0%   { transform: translateY(8vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: .95; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce){
+  .glyphs { display:none; }
+}
+.wrap, .hero { position: relative; z-index: 1; }
+  .glow {
+  color: #00E7FF;
+  text-shadow:
+    0 0 8px #00E7FF,
+    0 0 20px #00A8CC,
+    0 0 30px rgba(0, 231, 255, 0.7),
+    0 0 45px rgba(0, 231, 255, 0.5);
+  transition: 0.3s ease;
+}
+
+.glow:hover {
+  text-shadow:
+    0 0 12px #00E7FF,
+    0 0 27px #00A8CC,
+    0 0 55px rgba(0, 231, 255, 0.85);
+}
+</style>
+</head>
+<body>
+  <nav class="navbar">
+  <ul>
+    <li><a href="index.html">Command Hub</a></li>
+    <li><a href="academy.html">Academy</a></li>
+    <li><a href="doctrine.html">Doctrine</a></li>
+    <li><a href="paralex.html">PARALEX</a></li>
+  </ul>
+</nav>
+<div class="wrap" aria-label="Animated banner with floating glyphs">
+  <div class="hero">
+    <div class="kicker">FLAME LAW</div>
+<h1 class="glow">Where Ethics Meets Execution</h1>
+<p class="sub">Temple-verified discipline. Command-grade automation.</p>
+    <div class="cta">
+  <a class="btn" href="./doctrine.html">Read the Doctrine</a>
+  <a class="btn" href="./academy.html">Enter Flame Academy</a>
+  <button class="btn disabled" disabled title="Awaiting deployment">Launch PARALEX (AI Paralegal)</button>
+</div>
+    <div class="note">Mobile-ready · No Java required · iPhone optimized</div>
+  </div>
+
+  <!-- Floating field -->
+  <div class="field" id="field" aria-hidden="true"></div>
+</div>
+
+   <script>
+/* Minimal JS to sprinkle floating glyphs (works on iPhone Safari) */
+const GLYPHS = [
+  "𐤀","𐤁","𐤂","∴","✦","✧","✺","✹","☉","☾","⌽","⟡","⟐","ᚠ","ᛟ","₪","ℵ",
+  "Δ","Ω","Ψ","Φ","∞","∑","✶","✷","✸","✹","✺","✻","✼","✽","✾","✿",
+  "N⸺U","RE","GE","SI","9","36","365","26K"
+];
+
+const field = document.getElementById('field');
+const N = 46; // number of floating symbols (tweakable)
+
+function spawn(i){
+  const s = document.createElement('div');
+  s.className = 'glyph';
+  s.textContent = GLYPHS[Math.floor(Math.random()*GLYPHS.length)];
+  // Randomized CSS custom properties for each glyph
+  s.style.setProperty('--x', Math.floor(Math.random()*100)+'%');
+  s.style.setProperty('--r', (Math.random()>.5?1:-1) * (5 + Math.random()*25) + 'deg');
+  s.style.setProperty('--dur', (12 + Math.random()*18) + 's');
+  s.style.setProperty('--delay', (Math.random()*8) + 's');
+  field.appendChild(s);
+  // Recycle when animation ends
+  s.addEventListener('animationend', () => {
+    s.remove();
+    spawn(i);
+  }, {once:true});
+}
+for(let i=0;i<N;i++) spawn(i);
+
+     <footer class="foot">
+  <nav class="foot-nav">
+    <a href="./index.html">Home</a>
+    <a href="./doctrine.html">Doctrine</a>
+    <a href="./academy.html">Academy</a>
+    <span>PARALEX</span>
+  </nav>
+  <p class="ver">v0.9 • Command Verified • © <span id="yr"></span> Flame Division</p>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear(); 
+   </script>
+  
+</body>
+</html>
+
